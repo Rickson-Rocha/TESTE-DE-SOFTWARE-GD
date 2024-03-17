@@ -12,7 +12,10 @@ class Despesa:
         self._valor = valor
         self._nomeDespesa = nomeDespesa
 
-    
+    def definir_orcamento(self,valor:float)->None:
+        if valor < 0:
+             raise ValueError("O valor do item de despesa deve ser positivo")
+        self.valor = valor
     def getValor(self)->float:
         return self._valor
     
