@@ -1,4 +1,4 @@
-from typing import Dict, Double, List
+from typing import Dict, List
 
 from modulos.Categoria.Categoria import Categoria
 from modulos.Despesa import Despesa
@@ -11,8 +11,6 @@ class Orcamento:
         self._orcamentoMensal = orcamentoMensal
         self.despesas: List[Despesa] = []
 
-
-    
     def definirOrcamentoMensal(novoOrcamento:float):
         pass
 
