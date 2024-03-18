@@ -1,4 +1,4 @@
-from modulos.Orcamento.Orcamento import Orcamento
+from modulo.Orcamento.Orcamento import Orcamento
 
 
 class GeradorRelatorios:
