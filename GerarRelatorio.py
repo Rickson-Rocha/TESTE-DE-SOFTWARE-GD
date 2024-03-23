@@ -1,4 +1,8 @@
+<<<<<<< HEAD:utilitarios/GerarRelatorio.py
 from modulo.Orcamento.Orcamento import Orcamento
+=======
+from Orcamento import Orcamento
+>>>>>>> main:GerarRelatorio.py
 
 
 class GeradorRelatorios:

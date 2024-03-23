@@ -1,13 +1,7 @@
 from typing import Dict, List
 
-<<<<<<<< HEAD:Orcamento/Orcamento.py
-from Categoria.Categoria import Categoria
-from Despesa.Despesa import Despesa
-from Despesa.Despesa import Despesa
-========
 from Categoria import Categoria
 from Despesa import Despesa
->>>>>>>> main:Orcamento.py
 
 
 class Orcamento:
