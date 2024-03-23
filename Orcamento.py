@@ -17,7 +17,7 @@ class Orcamento:
         elif novoOrcamento == '':
             raise ValueError('O orçamento mensal não pode ser vazio.')
         elif novoOrcamento < 0:
-            raise ValueError('O orçamento não pode ter valor negativo.')
+            raise ValueError('O orçamento não pode ser um valor negativo.')
         elif novoOrcamento == 0:
             raise ValueError('O orçamento mensal deve ser maior que zero.')
         self._orcamentoMensal = novoOrcamento
@@ -44,7 +44,7 @@ class Orcamento:
         return mensagem_progresso
 
     def resumoDespesasPorCategoria(self, despesas: List[Despesa]) -> Dict[str, float]:
-        
+
         resumo: Dict[str, float] = {}
         for despesa in despesas:
             categoria = despesa.getCategoria().getNome()
