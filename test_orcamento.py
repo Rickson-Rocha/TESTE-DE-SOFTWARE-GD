@@ -57,20 +57,11 @@ class TestOrcamento(unittest.TestCase):
             self.assertIn(despesa, self.orcamento.despesas)
 
     def test_adiciona_despesa_excedendo_orcamento(self):
-        self.orcamento.definirOrcamentoMensal(500.0)
-        self.orcamento.adicionarDespesa(Despesa(Categoria('Alimentação'), 200.0, date.today(), 'Almoço'))
-        self.orcamento.adicionarDespesa(Despesa(Categoria('Transporte'), 300.0, date.today(), 'Ônibus'))
-        self.orcamento.adicionarDespesa(Despesa(Categoria('Transporte'), 300.0, date.today(), 'Ônibus'))
-        self.orcamento.adicionarDespesa(Despesa(Categoria('Transporte'), 300.0, date.today(), 'Ônibus'))
-        self.orcamento.adicionarDespesa(Despesa(Categoria('Transporte'), 300.0, date.today(), 'Ônibus'))
-        self.orcamento.adicionarDespesa(Despesa(Categoria('Transporte'), 300.0, date.today(), 'Ônibus'))
+       
+       with self.assertRaises(ValueError):
+        self.orcamento.adicionarDespesa(Despesa(Categoria('Lazer'), 1000.0, date.today(), 'Viagem'))
 
-        # Adicionar uma nova despesa que excede o orçamento restante
-        with self.assertRaises(ValueError):
-            self.orcamento.adicionarDespesa(Despesa(Categoria('Lazer'), 1000.0, date.today(), 'Viagem'))
-
-
-    
+   
     def test_calcula_total_despesas(self):
 
         self.orcamento.adicionarDespesa(Despesa(Categoria('Alimentação'), 150.0, date.today(), 'Supermercado'))
