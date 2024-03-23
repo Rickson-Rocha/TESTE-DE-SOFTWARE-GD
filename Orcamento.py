@@ -1,8 +1,8 @@
 from typing import Dict, List
 
-from modulos.Categoria.Categoria import Categoria
-from modulos.Despesa import Despesa
-from modulos.Despesa.Despesa import Despesa
+from Categoria import Categoria
+from Despesa import Despesa
+from Despesa import Despesa
 
 
 class Orcamento:
