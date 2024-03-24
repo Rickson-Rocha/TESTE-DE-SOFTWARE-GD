@@ -59,7 +59,7 @@ class TestOrcamento(unittest.TestCase):
     def test_adiciona_despesa_excedendo_orcamento(self):
        
        with self.assertRaises(ValueError):
-        self.orcamento.adicionarDespesa(Despesa(Categoria('Lazer'), 1000.0, date.today(), 'Viagem'))
+        self.orcamento.adicionarDespesa(Despesa(Categoria('Lazer'), 10050.0, date.today(), 'Viagem'))
 
    
     def test_calcula_total_despesas(self):

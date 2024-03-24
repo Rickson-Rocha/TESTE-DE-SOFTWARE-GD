@@ -1,7 +1,7 @@
 from typing import Dict, List
 
-from Despesa import Despesa
 from Categoria import Categoria
+from Despesa import Despesa
 
 
 class Orcamento:
@@ -10,7 +10,7 @@ class Orcamento:
         self._orcamentoMensal = orcamentoMensal
         self.despesas: List[Despesa] = []
 
-    def definirOrcamentoMensal(self,novoOrcamento:float):
+    def definirOrcamentoMensal(self,novoOrcamento:float) -> None:
 
         if not isinstance(novoOrcamento, (int, float)):
             raise ValueError('O orçamento mensal deve ser numérico.')
@@ -21,8 +21,9 @@ class Orcamento:
         elif novoOrcamento == 0:
             raise ValueError('O orçamento mensal deve ser maior que zero.')
         self._orcamentoMensal = novoOrcamento
-        
-    def adicionarDespesa(self, despesa:Despesa):
+    
+    
+    def adicionarDespesa(self, despesa:Despesa)->None:
         
         total_despesas = self.calcularTotalDespesa()
         if total_despesas + despesa.getValor() > self._orcamentoMensal:

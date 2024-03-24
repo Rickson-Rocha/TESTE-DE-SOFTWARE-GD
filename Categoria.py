@@ -1,6 +1,5 @@
 import re
 
-
 class Categoria:
 
     def __init__(self, nome: str) -> None:
