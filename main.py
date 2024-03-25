@@ -2,6 +2,7 @@ from datetime import date
 
 from Categoria import Categoria
 from Despesa import Despesa
+from GerarRelatorio import GeradorRelatorios
 from Orcamento import Orcamento
 
 categoria_alimentacao = Categoria("Alimentação")
@@ -34,3 +35,14 @@ print(orcamento.calcularProgressoOrcamento())
 resumo_despesas = orcamento.resumoDespesasPorCategoria(orcamento.despesas)
 for categoria, total in resumo_despesas.items():
     print(f"Categoria: {categoria} - Total: R${total:.2f}")
+
+gerador_relatorios = GeradorRelatorios()
+
+
+relatorio = gerador_relatorios.gerarRelatorioDespesasPorCategoria(orcamento)
+
+
+gerador_relatorios.exportarRelatorioParaCSV(relatorio, "relatorio_despesas.csv")
+
+
+gerador_relatorios.exportarRelatorioParaPDF(relatorio, "relatorio_despesas.pdf")
