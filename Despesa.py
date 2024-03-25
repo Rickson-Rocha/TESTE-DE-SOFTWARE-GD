@@ -11,6 +11,7 @@ class Despesa:
         self._categoria = categoria
         self._valor = valor
         self._nomeDespesa = nomeDespesa
+        self._data = data
 
     def obter_valor_despesa(self, valor: float) -> None:
          if valor < 0 :
@@ -22,6 +23,9 @@ class Despesa:
     
     def getCategoria(self) -> Categoria:
         return self._categoria
+    
+    def getData(self)->date:
+        return self._data
     
     def getNomeDespesa(self) -> str:
         return self._nomeDespesa
