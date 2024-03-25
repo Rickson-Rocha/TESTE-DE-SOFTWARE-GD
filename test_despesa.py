@@ -30,5 +30,3 @@ class TestDespesaMetodos(unittest.TestCase):
         with self.assertRaises(ValueError):
             self.despesa.obter_valor_despesa(-50.0)
 
-if __name__ == '__main__':
-    unittest.main()

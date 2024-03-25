@@ -38,5 +38,3 @@ class TestCategoria(unittest.TestCase):
         nome_categoria = categoria.getNome()
         self.assertEqual(nome_categoria, "Categoria Teste")
 
-if __name__ == '__main__':
-    unittest.main()
