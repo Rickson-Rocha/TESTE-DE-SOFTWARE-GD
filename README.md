@@ -1,3 +1,5 @@
+
+
 # Introdução
 
 O presente projeto tem como objetivo desenvolver um aplicativo de gerenciamento de despesas que auxilie os usuários a ter um melhor controle sobre suas finanças pessoais, possibilitando a tomada de decisões financeiras mais conscientes e eficazes. A proposta é oferecer uma ferramenta simples e intuitiva que permita registrar e categorizar as despesas diárias, além de fornecer relatórios detalhados para acompanhar o fluxo de caixa e identificar áreas de economia.
@@ -6,6 +8,20 @@ O presente projeto tem como objetivo desenvolver um aplicativo de gerenciamento 
 
 O aplicativo fornece as ferramentas necessárias para registrar, categorizar e analisar os gastos, o que permite aos usuários tomar decisões mais conscientes sobre como administrar seu dinheiro.
 
+## Para executar o projeto:
+### Instale o ambiente virtual:
+```bash
+python -m venv venv
+```
+### Ative o ambiente virtual:
+```bash
+  venv/Scripts/activate
+```
+### Dentro da pasta do projeto,instale as dependências:
+
+```bash
+ pip install -r requirements.txt
+```
 ## Funcionalidades do Aplicativo
 
 1. **Registro de Despesas:** Permite adicionar novas despesas, incluindo a categoria, o valor e a data da despesa. Essa funcionalidade é essencial para ter um registro completo dos gastos e poder acompanhá-los ao longo do tempo.
