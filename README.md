@@ -249,11 +249,227 @@ def test_obter_categoria(self):
 
   ```
 
+##### Classe TestOrcamento:
+
+#### setUp:
+
+Cria um objeto Orcamento com valor inicial de 1000.0.
+
+#### Testes de Definição do Orçamento:
+
+- **test_defini_orcamento_com_valor_nao_numerico:** Garantir que o orçamento seja definido apenas com valores numéricos.
+  - **Entrada:** String "teste".
+  - **Saída esperada:** Exceção `ValueError`.
+  - **Verificação:**
+
+    ```python
+    with self.assertRaises(ValueError):
+        self.orcamento.definirOrcamentoMensal('teste')
+    ```
+
+- **test_defini_orcamento_vazio:** Garantir que o orçamento não seja vazio.
+  - **Entrada:** String vazia "".
+  - **Saída esperada:** Exceção `ValueError`.
+  - **Verificação:**
+
+    ```python
+    with self.assertRaises(ValueError):
+        self.orcamento.definirOrcamentoMensal('')
+    ```
+
+- **test_defini_orcamento_negativo:** Garantir que o orçamento seja positivo.
+  - **Entrada:** Valor negativo -10.0.
+  - **Saída esperada:** Exceção `ValueError`.
+  - **Verificação:**
+
+    ```python
+    with self.assertRaises(ValueError):
+        self.orcamento.definirOrcamentoMensal(-10.0)
+    ```
+
+- **test_defini_orcamento_com_valor_zero:** Garantir que o orçamento seja maior que zero.
+  - **Entrada:** Valor zero 0.0.
+  - **Saída esperada:** Exceção `ValueError`.
+  - **Verificação:**
+
+    ```python
+    with self.assertRaises(ValueError):
+        self.orcamento.definirOrcamentoMensal(0.0)
+    ```
+
+- **test_defini_orcamento_mensal:** Garantir a atualização do orçamento com um novo valor.
+  - **Entrada:** Novo valor 1500.0.
+  - **Saída esperada:** Novo valor 1500.0 armazenado na variável `_orcamentoMensal`.
+  - **Verificação:**
+
+    ```python
+    novo_orcamento = 1500.0
+    self.orcamento.definirOrcamentoMensal(novo_orcamento)
+    self.assertEqual(self.orcamento._orcamentoMensal, novo_orcamento)
+    ```
+
+#### Testes de Adição de Despesas:
+
+- **test_adiciona_depesa:** Garantir que despesas sejam adicionadas ao orçamento.
+  - **Entrada:** Despesa com categoria "Alimentação", valor 200.0, data de hoje e nome "Almoço".
+  - **Saída esperada:** Despesa adicionada à lista despesas do orçamento.
+  - **Verificação:**
+
+    ```python
+    despesa = Despesa(Categoria('Alimentação'), 200.0, date.today(), 'Almoço')
+    self.orcamento.adicionarDespesa(despesa)
+    self.assertIn(despesa, self.orcamento.despesas)
+    ```
+
+- **test_adiciona_varias_despesas:** Garantir que múltiplas despesas sejam adicionadas ao orçamento.
+  - **Entrada:** Três despesas com diferentes categorias, valores, datas e nomes.
+  - **Saída esperada:** Todas as despesas adicionadas à lista despesas do orçamento.
+  - **Verificação:**
+
+    ```python
+    despesas = [
+        Despesa(Categoria('Saúde'), 200.0, date.today(), 'Academia'),
+        Despesa(Categoria('Transporte'), 50.0, date.today(), 'Uber'),
+        Despesa(Categoria('Lazer'), 100.0, date.today(), 'Cinema')
+    ]
+    for despesa in despesas:
+        self.orcamento.adicionarDespesa(despesa)
+
+    for despesa in despesas:
+        self.assertIn(despesa, self.orcamento.despesas)
+
+- **test_adiciona_despesa_excedendo_orcamento:**Garantir que a função lance uma exceção ValueError quando a despesa excede o orçamento.
+- **Entrada:**
+Despesa com categoria "Lazer", valor 1000.0, data de hoje e nome "Viagem".
+- **Saída esperada:**
+Exceção ValueError é lançada.
+- **Verificação:**
+
+   ```python
+
+   with self.assertRaises(ValueError):
+        self.orcamento.adicionarDespesa(Despesa(Categoria('Lazer'), 1000.0, date.today(), 'Viagem'))
+
+
+- **test_calcula_total_despesas:** calcular o total de todas as despesas corretamente.
+- **Entrada:**
+Três despesas com diferentes categorias, valores e datas.
+- **Saída esperada:**
+A soma dos valores das três despesas.
+- **Verificação:**
+
+   ```python
+
+  self.orcamento.adicionarDespesa(Despesa(Categoria('Alimentação'), 150.0, date.today(), 'Supermercado'))
+  self.orcamento.adicionarDespesa(Despesa(Categoria('Transporte'), 50.0, date.today(), 'Gasolina'))
+  self.orcamento.adicionarDespesa(Despesa(Categoria('Lazer'), 100.0, date.today(), 'Cinema'))
+  total_esperado = 150.0 + 50.0 + 100.0
+  total_calculado = self.orcamento.calcularTotalDespesa()
+  self.assertEqual(total_calculado, total_esperado)
+
+- **test_calcula_total_sem_despesas:** Garantir que a função retorna 0.0 quando não há despesas..
+- **Entrada:**
+Nenhuma despesa.
+- **Saída esperada:**
+0.0
+- **Verificação:**
+
+   ```python
+
+   total_calculado = self.orcamento.calcularTotalDespesa()
+   self.assertEqual(total_calculado, 0.0)
+
+- **test_calcula_total_com_remocao_despesa:**Atualização do total após a remoção de uma despesa.
+- **Entrada:**
+Duas despesas, com uma sendo removida após a adição.
+- **Saída esperada:**
+O total após a remoção da primeira despesa.
+- **Verificação:**
+
+   ```python
+
+  despesa1 = Despesa(Categoria('Alimentação'), 150.0, date.today(), 'Supermercado')
+  despesa2 = Despesa(Categoria('Transporte'), 50.0, date.today(), 'Gasolina')
+  self.orcamento.adicionarDespesa(despesa1)
+  self.orcamento.adicionarDespesa(despesa2)
+
+  total_esperado = 150.0 + 50.0
+
+  total_calculado = self.orcamento.calcularTotalDespesa()
+
+  self.assertEqual(total_calculado, total_esperado)
+
+  self.orcamento.removerDespesa(despesa1)
+  novo_total_esperado = 50.0
+
+  novo_total_calculado = self.orcamento.calcularTotalDespesa()
+
+  self.assertEqual(novo_total_calculado, novo_total_esperado)
+
+
+- **test_calcula_progresso_orcamento_sem_despesas:** Garantir que a função retorna "Progresso do orçamento: 0.00%" quando não há despesas.
+- **Entrada:**
+Nenhuma despesa.
+- **Saída esperada:**
+"Progresso do orçamento: 0.00%"
+- **Verificação:**
+
+   ```python
+
+   progresso_esperado = "Progresso do orçamento: 0.00%"
+   progresso_calculado = self.orcamento.calcularProgressoOrcamento()
+
+   self.assertEqual(progresso_calculado, progresso_esperado)
+
+- **test_calcula_progresso_orcamento_sem_despesas:** Garantir que a função calcula o progresso do orçamento corretamente.
+- **Entrada:**
+Despesa com categoria "Lazer", valor 1000.0, data de hoje e nome "Viagem".
+- **Saída esperada:**
+Frase indicando o progresso do orçamento
+- **Verificação:**
+
+   ```python
+
+   self.orcamento.adicionarDespesa(Despesa(Categoria('Alimentação'), 500.0, date.today(), 'Supermercado'))
+  self.orcamento.adicionarDespesa(Despesa(Categoria('Transporte'), 250.0, date.today(), 'Gasolina'))
+  self.orcamento.adicionarDespesa(Despesa(Categoria('Lazer'), 100.0, date.today(), 'Cinema'))
+  progresso_esperado = "Progresso do orçamento: 85.00%"  # (total de despesas / orçamento) * 100%
+  progresso_calculado = self.orcamento.calcularProgressoOrcamento()
+
+  self.assertEqual(progresso_calculado, progresso_esperado)
+
+- **test_resumo_despesas_por_categoria_sem_despesas:** Garantir que a função retorna um dicionário vazio quando não há despesas.
+- **Entrada:**
+Nenhuma despesa.
+- **Saída esperada:**
+Dicionário vazio {}
+- **Verificação:**
+
+   ```python
+
+  despesas = []
+  resumo_esperado = {}
+  resumo_calculado = self.orcamento.resumoDespesasPorCategoria(despesas)
+
+  self.assertEqual(resumo_calculado, resumo_esperado)
+
+- **test_resumo_despesas_por_categoria_sem_despesas:** Garantir que a função retorna um dicionário com o total por categoria.
+- **Entrada:**
+Não aplicável 
+- **Saída esperada:**
+Exceção ValueError é lançada.
+- **Verificação:**
+
+   ```python
+   
+  with self.assertRaises(ValueError):
+    self.orcamento.adicionarDespesa(Despesa(Categoria('Transporte'), 1900.0, date.today(), 'Ônibus'))  
+
 # Conclusão
 
 Foram realizados testes unitários utilizando o framework unittest para dar início à implementação das funcionalidades do sistema de controle de gastos. O objetivo dos testes era verificar o funcionamento correto das classes Categoria, Despesa e Orçamento, bem como garantir que as funcionalidades atendessem aos requisitos do sistema.
 
-Os testes foram executados com sucesso, até mesmo o teste inicial de certificação de falha, confirmando que o sistema está funcionando como esperado (mesmo quando o espero é o erro). Todos os requisitos básicos foram atendidos e as funcionalidades estão operando de forma correta.
+Os testes foram executados com sucesso, até mesmo o teste inicial de certificação de falha, confirmando que o sistema está funcionando como esperado (mesmo quando o esperado é o erro). Todos os requisitos básicos foram atendidos e as funcionalidades estão operando de forma correta.
 
 Este trabalho apresentou o TDD e sua importância. A implementação de um processo de testes, mesmo que básico, demonstra ser uma estratégia valiosa para mitigar riscos e otimizar o tempo dedicado à correção de falhas. A filosofia TDD se destaca por garantir que o código seja criado já com testes, permitindo a detecção precoce de erros. Essa abordagem minimiza a necessidade de refatoração extensiva de código escrito há algum tempo, além de promover a padronização e qualidade do código como um todo.
 
